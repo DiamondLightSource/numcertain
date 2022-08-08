@@ -57,4 +57,4 @@ toml==0.10.2
 tomli==2.0.1
 typing_extensions==4.3.0
 urllib3==1.26.11
-virtualenv==20.16.2
+virtualenv==20.16.3
