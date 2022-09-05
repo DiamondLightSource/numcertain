@@ -97,12 +97,8 @@ jobs:
         with:
           python-version: ${{ matrix.python.version }}
 
-      - name: Install cibuildwheel
-        run:
-          pip install cibuildwheel
-
       - name: Create Wheel
-        run: cibuildwheel --output-dir dist
+        uses: pypa/cibuildwheel@v2.9.0
         env:
           CIBW_BUILD: ${{ matrix.python.target }}*64
           CIBW_SKIP: "*-musllinux*"
