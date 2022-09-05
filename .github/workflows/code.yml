@@ -82,8 +82,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu-latest", "windows-latest", "macos-latest"]
-        python: [{version: "3.9", target: cp39}, {version: "3.10", target: cp310}]
+        os: [ubuntu-latest, macos-latest]
+        arch: [{python: x64, wheel: auto}]
+        include:
+          - os: windows-latest
+            arch: {python: x86, wheel: auto32}
+          - os: windows-latest
+            arch: {python: x64, wheel: auto64}
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -95,13 +100,15 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python.version }}
+          python-version: "3.10"
+          architecture: ${{ matrix.arch.python }}
 
       - name: Create Wheel
         uses: pypa/cibuildwheel@v2.9.0
         env:
-          CIBW_BUILD: ${{ matrix.python.target }}*64
+          CIBW_BUILD: "cp*"
           CIBW_SKIP: "*-musllinux*"
+          CIBW_ARCHS: ${{ matrix.arch.wheel }}
 
       - name: Upload Wheel as artifact
         uses: actions/upload-artifact@v3

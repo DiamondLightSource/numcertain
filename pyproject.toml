@@ -1,4 +1,3 @@
 [build-system]
-# Setuptools & wheel pinned for numpy compilation: https://github.com/numpy/numpy/issues/22135
-requires = ["setuptools==59.2.0", "oldest-supported-numpy", "wheel==0.37.0"]
+requires = ["setuptools", "oldest-supported-numpy", "wheel"]
 build-backend = "setuptools.build_meta"
