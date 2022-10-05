@@ -159,7 +159,6 @@ jobs:
         uses: pypa/cibuildwheel@v2.9.0
         env:
           CIBW_BUILD: "cp*"
-          CIBW_SKIP: "*-musllinux*"
           CIBW_ARCHS: ${{ matrix.arch.wheel }}
 
       - name: Upload Wheel as artifact
