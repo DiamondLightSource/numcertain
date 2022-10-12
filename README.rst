@@ -9,9 +9,9 @@ propagation of uncorrelated values.
 
 ============== ==============================================
 PyPI           ``pip install numcertain``
-Source code    https://github.com/garryod/numcertain
-Documentation  https://garryod.github.io/numcertain
-Releases       https://github.com/garryod/numcertain/releases
+Source code    https://github.com/DiamondLightSource/numcertain
+Documentation  https://DiamondLightSource.github.io/numcertain
+Releases       https://github.com/DiamondLightSource/numcertain/releases
 ============== ==============================================
 
 Aritmatic Examples
@@ -80,16 +80,16 @@ provided by the python package `JAX`_ in propagating uncertainities for array ma
 
 .. _JAX: https://jax.readthedocs.io/en/latest/
 
-.. |code_ci| image:: https://github.com/garryod/numcertain/workflows/Code%20CI/badge.svg?branch=master
-    :target: https://github.com/garryod/numcertain/actions?query=workflow%3A%22Code+CI%22
+.. |code_ci| image:: https://github.com/DiamondLightSource/numcertain/workflows/Code%20CI/badge.svg?branch=master
+    :target: https://github.com/DiamondLightSource/numcertain/actions?query=workflow%3A%22Code+CI%22
     :alt: Code CI
 
-.. |docs_ci| image:: https://github.com/garryod/numcertain/workflows/Docs%20CI/badge.svg?branch=master
-    :target: https://github.com/garryod/numcertain/actions?query=workflow%3A%22Docs+CI%22
+.. |docs_ci| image:: https://github.com/DiamondLightSource/numcertain/workflows/Docs%20CI/badge.svg?branch=master
+    :target: https://github.com/DiamondLightSource/numcertain/actions?query=workflow%3A%22Docs+CI%22
     :alt: Docs CI
 
-.. |coverage| image:: https://codecov.io/gh/garryod/numcertain/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/garryod/numcertain
+.. |coverage| image:: https://codecov.io/gh/DiamondLightSource/numcertain/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/DiamondLightSource/numcertain
     :alt: Test Coverage
 
 .. |pypi_version| image:: https://img.shields.io/pypi/v/numcertain.svg
@@ -104,4 +104,4 @@ provided by the python package `JAX`_ in propagating uncertainities for array ma
     Anything below this line is used when viewing README.rst and will be replaced
     when included in index.rst
 
-See https://garryod.github.io/numcertain for more detailed documentation.
+See https://DiamondLightSource.github.io/numcertain for more detailed documentation.
