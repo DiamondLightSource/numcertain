@@ -10,7 +10,7 @@ Practical step-by-step guides for the more experienced user.
 
     reference/api
     reference/contributing
-    Releases <https://github.com/garryod/numcertain/releases>
+    Releases <https://github.com/DiamondLightSource/numcertain/releases>
     Index <genindex.html#http://>
 
 ..
