@@ -1,6 +1,7 @@
-from . import uncertain
-from ._version_git import __version__
+from importlib.metadata import version
 
-# __all__ defines the public API for the package.
-# Each module also defines its own __all__.
+from . import uncertain
+
+__version__ = version("numcertain")
+
 __all__ = ["__version__", "uncertain"]
