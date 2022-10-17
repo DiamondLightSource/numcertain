@@ -5,17 +5,16 @@
 #include <Python.h>
 #include <structmember.h>
 
-#include <stdbool.h>
 #include <math.h>
+#include <stdbool.h>
 
 #define error_converting(x) (((x) == -1) && PyErr_Occurred())
 
 void set_overflow(void);
 
-typedef struct Uncertain
-{
-    double nominal;
-    double uncertainity;
+typedef struct Uncertain {
+  double nominal;
+  double uncertainity;
 } Uncertain_t;
 
 Uncertain_t make_uncertain_longs(long nominal, long uncertainty);
@@ -32,10 +31,8 @@ double uncertain_double(Uncertain_t u);
 long uncertain_long(Uncertain_t u);
 int uncertain_nonzero(Uncertain_t u);
 
-typedef struct PyUncertain
-{
-    PyObject_HEAD
-        Uncertain_t u;
+typedef struct PyUncertain {
+  PyObject_HEAD Uncertain_t u;
 } PyUncertain_t;
 
 extern PyTypeObject PyUncertain_Type;
@@ -45,8 +42,8 @@ PyObject *PyUncertain_from_Uncertain(Uncertain_t u);
 PyObject *PyUncertain_new(PyTypeObject *type, PyObject *args, PyObject *kwds);
 PyObject *PyUncertain_repr(PyObject *self);
 
-#define UNCERTAIN_BINOP(name) \
-    PyObject *PyUncertain_##name(PyObject *pya, PyObject *pyb);
+#define UNCERTAIN_BINOP(name)                                                  \
+  PyObject *PyUncertain_##name(PyObject *pya, PyObject *pyb);
 
 UNCERTAIN_BINOP(add)
 UNCERTAIN_BINOP(subtract)

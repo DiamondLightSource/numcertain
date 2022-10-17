@@ -7,10 +7,10 @@
 
 #define NPY_NO_DEPRECATED_API NPY_API_VERSION
 #include "numpy/arrayobject.h"
-#include "numpy/ufuncobject.h"
 #include "numpy/npy_3kcompat.h"
+#include "numpy/ufuncobject.h"
 
-#include "uncertaindtype.h"
 #include "npyuncertain.h"
+#include "uncertaindtype.h"
 
 #endif
