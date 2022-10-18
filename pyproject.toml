@@ -17,7 +17,7 @@ classifiers = [
 dependencies = ["numpy"]
 description = "A python & numpy data type for floating point numbers with quantified uncertainity."
 dynamic = ["version"]
-license = { file = "LICENCE" }
+license = { file = "LICENSE" }
 name = "numcertain"
 readme = "README.rst"
 requires-python = ">=3.9"
