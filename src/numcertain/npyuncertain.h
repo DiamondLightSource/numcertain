@@ -74,4 +74,13 @@ BINOP_UFUNC(not_equal)
 
 #undef BINOP_UFUNC
 
+#define UNARY_UFUNC(name)                                                      \
+  void uncertain_ufunc_##name(char **args, npy_intp const *dimensions,         \
+                              npy_intp const *steps, void *data);
+
+UNARY_UFUNC(nominal)
+UNARY_UFUNC(uncertainty)
+
+#undef UNARY_UFUNC
+
 #endif

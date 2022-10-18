@@ -54,6 +54,10 @@ Uncertain_t uncertain_divide(Uncertain_t a, Uncertain_t b) {
   return result;
 };
 
+double uncertain_nominal(Uncertain_t u) { return u.nominal; };
+
+double uncertain_uncertainty(Uncertain_t u) { return u.uncertainity; };
+
 double uncertain_double(Uncertain_t u) { return u.nominal; };
 
 long uncertain_long(Uncertain_t u) { return (long)u.nominal; };

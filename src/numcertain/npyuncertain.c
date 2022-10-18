@@ -158,3 +158,19 @@ UNCERTAIN_BINOP_UFUNC(divide, Uncertain_t, uncertain_divide)
 
 UNCERTAIN_BINOP_UFUNC(equal, bool, uncertain_eq)
 UNCERTAIN_BINOP_UFUNC(not_equal, bool, uncertain_ne)
+
+#define UNCERTAIN_UNARY_UFUNC(name, outtype, exp)                              \
+  void uncertain_ufunc_##name(char **args, npy_intp const *dimensions,         \
+                              npy_intp const *steps, void *data) {             \
+    npy_intp in_step = steps[0], out_step = steps[1];                          \
+    char *in = args[0], *out = args[1];                                        \
+    for (int i = 0; i < *dimensions; i++) {                                    \
+      Uncertain_t u = *(Uncertain_t *)in;                                      \
+      *(outtype *)out = exp(u);                                                \
+      in += in_step;                                                           \
+      out += out_step;                                                         \
+    }                                                                          \
+  }
+
+UNCERTAIN_UNARY_UFUNC(nominal, npy_float64, uncertain_nominal)
+UNCERTAIN_UNARY_UFUNC(uncertainty, npy_float64, uncertain_uncertainty)

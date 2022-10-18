@@ -13,6 +13,10 @@ static struct PyModuleDef moduledef = {PyModuleDef_HEAD_INIT,
                                        NULL};
 
 PyMODINIT_FUNC PyInit_uncertain(void) {
+  PyObject *module = PyModule_Create(&moduledef);
+  if (!module)
+    return NULL;
+
   import_array();
   import_umath();
 
@@ -81,43 +85,63 @@ PyMODINIT_FUNC PyInit_uncertain(void) {
                 npy_uncertain, 1)
   REGISTER_CAST(Uncertain_t, npy_bool, &npyuncertain_descr, NPY_BOOL, 0)
 
-#define REGISTER_UFUNC(name, ...)                                              \
+#define REGISTER_UFUNC(name, ufuncmodule, ...)                                 \
   {                                                                            \
     PyUFuncObject *ufunc =                                                     \
-        (PyUFuncObject *)PyObject_GetAttrString(numpy, #name);                 \
+        (PyUFuncObject *)PyObject_GetAttrString(ufuncmodule, #name);           \
     if (!ufunc) {                                                              \
       return NULL;                                                             \
     }                                                                          \
     int arg_types[] = __VA_ARGS__;                                             \
     if (sizeof(arg_types) / sizeof(int) != ufunc->nargs) {                     \
-      Py_DECREF(ufunc);                                                        \
+      Py_DECREF(module);                                                       \
       return NULL;                                                             \
     }                                                                          \
     if (PyUFunc_RegisterLoopForType((PyUFuncObject *)ufunc, npy_uncertain,     \
                                     uncertain_ufunc_##name, arg_types,         \
                                     0) < 0) {                                  \
-      Py_DECREF(ufunc);                                                        \
+      Py_DECREF(module);                                                       \
       return NULL;                                                             \
     }                                                                          \
     Py_DECREF(ufunc);                                                          \
   }
 
-#define REGISTER_UFUNC_BINOP_UNCERTAIN(name)                                   \
-  REGISTER_UFUNC(name, {npy_uncertain, npy_uncertain, npy_uncertain})
-#define REGISTER_UFUNC_BINOP_BOOL(name)                                        \
-  REGISTER_UFUNC(name, {npy_uncertain, npy_uncertain, NPY_BOOL})
+#define REGISTER_NUMPY_UFUNC(name, ...) REGISTER_UFUNC(name, numpy, __VA_ARGS__)
 
-  REGISTER_UFUNC_BINOP_UNCERTAIN(add)
-  REGISTER_UFUNC_BINOP_UNCERTAIN(subtract)
-  REGISTER_UFUNC_BINOP_UNCERTAIN(multiply)
-  REGISTER_UFUNC_BINOP_UNCERTAIN(divide)
+#define REGISTER_NUMPY_UFUNC_BINOP_UNCERTAIN(name)                             \
+  REGISTER_NUMPY_UFUNC(name, {npy_uncertain, npy_uncertain, npy_uncertain})
+#define REGISTER_NUMPY_UFUNC_BINOP_BOOL(name)                                  \
+  REGISTER_NUMPY_UFUNC(name, {npy_uncertain, npy_uncertain, NPY_BOOL})
 
-  REGISTER_UFUNC_BINOP_BOOL(equal)
-  REGISTER_UFUNC_BINOP_BOOL(not_equal)
+  REGISTER_NUMPY_UFUNC_BINOP_UNCERTAIN(add)
+  REGISTER_NUMPY_UFUNC_BINOP_UNCERTAIN(subtract)
+  REGISTER_NUMPY_UFUNC_BINOP_UNCERTAIN(multiply)
+  REGISTER_NUMPY_UFUNC_BINOP_UNCERTAIN(divide)
 
-  PyObject *module = PyModule_Create(&moduledef);
-  if (!module)
-    return NULL;
+  REGISTER_NUMPY_UFUNC_BINOP_BOOL(equal)
+  REGISTER_NUMPY_UFUNC_BINOP_BOOL(not_equal)
+
+#define NEW_UFUNC(name, doc)                                                   \
+  {                                                                            \
+    PyObject *ufunc = PyUFunc_FromFuncAndData(0, 0, 0, 0, 1, 1, PyUFunc_None,  \
+                                              (char *)#name, (char *)doc, 0);  \
+    if (!ufunc) {                                                              \
+      Py_DECREF(module);                                                       \
+      return NULL;                                                             \
+    }                                                                          \
+    PyModule_AddObject(module, #name, (PyObject *)ufunc);                      \
+  }
+
+  NEW_UFUNC(nominal, "uncertain number nominal value")
+  NEW_UFUNC(uncertainty, "uncertain number uncertainity")
+
+#define REGISTER_MODULE_UFUNC(name, ...)                                       \
+  REGISTER_UFUNC(name, module, __VA_ARGS__)
+#define REGISTER_MODULE_UFUNC_UNARY_FLOAT64(name)                              \
+  REGISTER_MODULE_UFUNC(name, {npy_uncertain, NPY_FLOAT64})
+
+  REGISTER_MODULE_UFUNC_UNARY_FLOAT64(nominal)
+  REGISTER_MODULE_UFUNC_UNARY_FLOAT64(uncertainty)
 
   Py_INCREF(&PyUncertain_Type);
   PyModule_AddObject(module, "uncertain", (PyObject *)&PyUncertain_Type);

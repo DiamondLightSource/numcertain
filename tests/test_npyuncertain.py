@@ -3,7 +3,7 @@ from typing import cast
 
 from numpy import array, float32, float64, int16, int32, int64
 
-from numcertain.uncertain import uncertain
+from numcertain.uncertain import nominal, uncertain, uncertainty
 
 
 def test_initialisation_uncertain():
@@ -105,3 +105,13 @@ def test_cast_to_float32():
 def test_cast_to_float64():
     a = array([uncertain(1.0, 0.2), uncertain(1.6, 0.8)]).astype(float64)
     assert (array([1.0, 1.6], dtype=float64) == a).all()
+
+
+def test_get_nominal():
+    a = array([uncertain(1.0, 0.2), uncertain(1.6, 0.8)])
+    assert (array([1.0, 1.6]) == nominal(a)).all()
+
+
+def test_get_uncertainty():
+    a = array([uncertain(1.0, 0.2), uncertain(1.6, 0.8)])
+    assert (array([0.2, 0.8]) == uncertainty(a)).all()
