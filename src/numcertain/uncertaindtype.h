@@ -27,6 +27,8 @@ Uncertain_t uncertain_multiply(Uncertain_t a, Uncertain_t b);
 Uncertain_t uncertain_divide(Uncertain_t a, Uncertain_t b);
 bool uncertain_eq(Uncertain_t a, Uncertain_t b);
 bool uncertain_ne(Uncertain_t a, Uncertain_t b);
+double uncertain_nominal(Uncertain_t u);
+double uncertain_uncertainty(Uncertain_t u);
 double uncertain_double(Uncertain_t u);
 long uncertain_long(Uncertain_t u);
 int uncertain_nonzero(Uncertain_t u);

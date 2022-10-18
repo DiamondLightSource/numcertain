@@ -1,4 +1,9 @@
-from typing import Protocol, overload
+from typing import Literal, Protocol, overload
+
+from numpy._typing._ufunc import _UFunc_Nin1_Nout1
+
+nominal: _UFunc_Nin1_Nout1[Literal["nominal"], Literal[1], None]
+uncertainty: _UFunc_Nin1_Nout1[Literal["uncertainty"], Literal[1], None]
 
 class _UncertainOp(Protocol):
     @overload
