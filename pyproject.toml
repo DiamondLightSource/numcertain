@@ -14,7 +14,7 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
 ]
-dependencies = ["click", "numpy"]
+dependencies = ["numpy"]
 description = "A python & numpy data type for floating point numbers with quantified uncertainity."
 dynamic = ["version"]
 license = { file = "LICENCE" }
@@ -24,9 +24,6 @@ requires-python = ">=3.9"
 
 [project.urls]
 GitHub = "https://github.com/DiamondLightSource/numcertain"
-
-[project.scripts]
-numcertain = "numcertain.cli:main"
 
 [[project.authors]]
 email = "garry.o'donnell@diamond.ac.uk"
