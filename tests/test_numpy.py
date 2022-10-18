@@ -3,7 +3,7 @@ from typing import cast
 
 from numpy import array, float32, float64, int16, int32, int64
 
-from numcertain.uncertain import nominal, uncertain, uncertainty
+from numcertain import nominal, uncertain, uncertainty
 
 
 def test_initialisation_uncertain():

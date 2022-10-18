@@ -1,16 +1,11 @@
-#ifndef NPYUNCERTAIN_H
-#define NPYUNCERTAIN_H
+#pragma once
 
-#define PY_SSIZE_T_CLEAN
-#include <Python.h>
-#include <structmember.h>
+#include "pytype.h"
 
 #define NPY_NO_DEPRECATED_API NPY_API_VERSION
 #include "numpy/arrayobject.h"
 #include "numpy/npy_3kcompat.h"
 #include "numpy/ufuncobject.h"
-
-#include "uncertaindtype.h"
 
 PyObject *npyuncertain_getitem(void *data, void *arr);
 int npyuncertain_setitem(PyObject *item, void *data, void *arr);
@@ -83,4 +78,4 @@ UNARY_UFUNC(uncertainty)
 
 #undef UNARY_UFUNC
 
-#endif
+int add_numpy_functionality(PyObject *module);

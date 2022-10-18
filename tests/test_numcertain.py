@@ -2,7 +2,7 @@ from math import isclose
 
 import pytest
 
-from numcertain.uncertain import uncertain
+from numcertain import uncertain
 
 
 def test_initialisation_two_float():
