@@ -1,7 +1,7 @@
 from importlib.metadata import version
 
-from . import uncertain
+from ._numcertain import nominal, uncertain, uncertainty
 
 __version__ = version("numcertain")
 
-__all__ = ["__version__", "uncertain"]
+__all__ = ["__version__", "nominal", "uncertain", "uncertainty"]

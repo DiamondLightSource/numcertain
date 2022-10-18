@@ -1,78 +1,10 @@
-#include "uncertaindtype.h"
+#include "pytype.h"
 
 void set_overflow(void) {
   if (!PyErr_Occurred()) {
     PyErr_SetString(PyExc_OverflowError, "overflow in Uncertain_t arithmetic");
   }
 }
-
-Uncertain_t make_uncertain_longs(long nominal, long uncertainty) {
-  Uncertain_t u = {nominal, uncertainty};
-  if (u.nominal != nominal || u.uncertainity != uncertainty)
-    set_overflow();
-  return u;
-};
-
-Uncertain_t make_uncertain_long(long nominal) {
-  return make_uncertain_longs(nominal, 0);
-};
-
-Uncertain_t make_uncertain_doubles(double nominal, double uncertainty) {
-  Uncertain_t u = {nominal, uncertainty};
-  return u;
-};
-
-Uncertain_t make_uncertain_double(double nominal) {
-  return make_uncertain_doubles(nominal, 0);
-};
-
-Uncertain_t uncertain_add(Uncertain_t a, Uncertain_t b) {
-  Uncertain_t result = {a.nominal + b.nominal,
-                        hypot(a.uncertainity, b.uncertainity)};
-  return result;
-};
-
-Uncertain_t uncertain_subtract(Uncertain_t a, Uncertain_t b) {
-  Uncertain_t result = {a.nominal - b.nominal,
-                        hypot(a.uncertainity, b.uncertainity)};
-  return result;
-};
-
-Uncertain_t uncertain_multiply(Uncertain_t a, Uncertain_t b) {
-  Uncertain_t result = {
-      a.nominal * b.nominal,
-      (a.nominal * b.nominal) *
-          hypot(a.uncertainity / a.nominal, b.uncertainity / b.nominal)};
-  return result;
-};
-
-Uncertain_t uncertain_divide(Uncertain_t a, Uncertain_t b) {
-  Uncertain_t result = {
-      a.nominal / b.nominal,
-      (a.nominal / b.nominal) *
-          hypot(a.uncertainity / a.nominal, b.uncertainity / b.nominal)};
-  return result;
-};
-
-double uncertain_nominal(Uncertain_t u) { return u.nominal; };
-
-double uncertain_uncertainty(Uncertain_t u) { return u.uncertainity; };
-
-double uncertain_double(Uncertain_t u) { return u.nominal; };
-
-long uncertain_long(Uncertain_t u) { return (long)u.nominal; };
-
-bool uncertain_eq(Uncertain_t a, Uncertain_t b) {
-  return a.nominal == b.nominal && a.uncertainity == b.uncertainity;
-};
-
-bool uncertain_ne(Uncertain_t a, Uncertain_t b) {
-  return a.nominal != b.nominal || a.uncertainity != b.uncertainity;
-};
-
-int uncertain_nonzero(Uncertain_t u) {
-  return u.nominal != 0 || u.uncertainity != 0;
-};
 
 int PyUncertain_Check(PyObject *object) {
   return PyObject_IsInstance(object, (PyObject *)&PyUncertain_Type);
@@ -81,9 +13,8 @@ int PyUncertain_Check(PyObject *object) {
 PyObject *PyUncertain_from_Uncertain(Uncertain_t u) {
   PyUncertain_t *py_uncertain =
       (PyUncertain_t *)PyUncertain_Type.tp_alloc(&PyUncertain_Type, 0);
-  if (py_uncertain) {
+  if (py_uncertain)
     py_uncertain->u = u;
-  }
   return (PyObject *)py_uncertain;
 }
 
@@ -248,10 +179,11 @@ PyGetSetDef PyUncertain_getset[] = {
     {0}};
 
 PyTypeObject PyUncertain_Type = {
-    PyVarObject_HEAD_INIT(NULL, 0) "numcertain.uncertain", // tp_name
-    sizeof(PyUncertain_t),                                 // tp_basicssize
-    0,                                                     // tp_itemsize
-    0,                                                     // tp_dealloc
+    PyVarObject_HEAD_INIT(NULL,
+                          0) "numcertain.numcertain.uncertain", // tp_name
+    sizeof(PyUncertain_t),                                      // tp_basicssize
+    0,                                                          // tp_itemsize
+    0,                                                          // tp_dealloc
     0,                                        // tp_vectorcall_offset
     0,                                        // tp_getattr
     0,                                        // tp_setattr
