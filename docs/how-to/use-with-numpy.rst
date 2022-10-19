@@ -8,7 +8,7 @@ following imports are required to follow the examples presented in this section:
 .. code:: python
 
     from numpy import array
-    from numcertain impoprt uncertain
+    from numcertain import uncertain, nominal, uncertainties
 
 
 Creating an array of uncertain values
@@ -83,3 +83,23 @@ may be performed as normal for numeric python types (i.e. with use of the ``+``,
     See: :ref:`Uncertainty Propagation Explained
     <uncertainty-propagation-in-numcertain>` for details of how the uncertainty
     propagation math is performed.
+
+
+Retrieving expectance or standard deviation
+-------------------------------------------
+
+A pair of numpy Universal Functions (ufuncs) are supplied to allow retrieval of the
+nominal values and uncertainties of an array of uncertain values. The use of these is
+demonstrated below:
+
+.. code:: python
+
+    a = array([uncertain(5.0, 3.0), uncertain(7.0, 6.0)])
+
+    print(nominal(a))
+    print(uncertainties(a))
+
+.. code::
+
+    >> [5.0, 7.0]
+    >> [3.0, 6.0]
