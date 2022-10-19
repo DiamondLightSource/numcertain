@@ -2,6 +2,7 @@ API
 ===
 
 .. automodule:: numcertain
+    :members:
 
     ``numcertain``
     --------------
@@ -10,7 +11,3 @@ API
     :type: str
 
     Version number as calculated by https://github.com/dls-controls/versiongit
-
-.. automodule:: numcertain.uncertain
-    :members:
-
