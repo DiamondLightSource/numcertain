@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How to use the Uncertain dtype with numpy &mdash; numcertain 0.2.1.dev96+g0d924d8 documentation</title>
+  <title>How to use the Uncertain dtype with numpy &mdash; numcertain 0.2.1.dev97+g70bc2da documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -57,6 +57,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#creating-an-array-of-uncertain-values">Creating an array of uncertain values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#converting-an-array-to-the-uncertain-dtype">Converting an array to the uncertain dtype</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#arithmetic-with-uncertain-values">Arithmetic with uncertain values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#retrieving-expectance-or-standard-deviation">Retrieving expectance or standard deviation</a></li>
 </ul>
 </li>
 </ul>
@@ -103,7 +104,7 @@
 defined data type, as such it may be used like any other numpy array <code class="docutils literal notranslate"><span class="pre">dtype</span></code>. The
 following imports are required to follow the examples presented in this section:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
-<span class="kn">from</span> <span class="nn">numcertain</span> <span class="n">impoprt</span> <span class="n">uncertain</span>
+<span class="kn">from</span> <span class="nn">numcertain</span> <span class="kn">import</span> <span class="n">uncertain</span><span class="p">,</span> <span class="n">nominal</span><span class="p">,</span> <span class="n">uncertainties</span>
 </pre></div>
 </div>
 <section id="creating-an-array-of-uncertain-values">
@@ -166,6 +167,22 @@ may be performed as normal for numeric python types (i.e. with use of the <code 
 <p class="admonition-title">Note</p>
 <p>See: <a class="reference internal" href="../explanations/uncertainty-propagation.html#uncertainty-propagation-in-numcertain"><span class="std std-ref">Uncertainty Propagation Explained</span></a> for details of how the uncertainty
 propagation math is performed.</p>
+</div>
+</section>
+<section id="retrieving-expectance-or-standard-deviation">
+<h2>Retrieving expectance or standard deviation<a class="headerlink" href="#retrieving-expectance-or-standard-deviation" title="Permalink to this heading"></a></h2>
+<p>A pair of numpy Universal Functions (ufuncs) are supplied to allow retrieval of the
+nominal values and uncertainties of an array of uncertain values. The use of these is
+demonstrated below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">),</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">)])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">nominal</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">uncertainties</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span>
+</pre></div>
 </div>
 </section>
 </section>
