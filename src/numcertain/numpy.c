@@ -302,8 +302,10 @@ int add_numpy_functionality(PyObject *module) {
     PyModule_AddObject(module, #name, (PyObject *)ufunc);                      \
   }
 
-  NEW_UFUNC(nominal, "uncertain number nominal value")
-  NEW_UFUNC(uncertainty, "uncertain number uncertainity")
+  NEW_UFUNC(nominal, "Retrieves an ndarray of nominal values from an ndarray "
+                     "of uncertain values.")
+  NEW_UFUNC(uncertainty, "Retrieves an ndarray of uncertainties from an "
+                         "ndarray of uncertain values.")
 
 #define REGISTER_MODULE_UFUNC(name, ...)                                       \
   REGISTER_UFUNC(name, module, __VA_ARGS__)

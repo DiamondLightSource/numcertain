@@ -2,9 +2,7 @@ from typing import Literal, Protocol, overload
 
 from numpy._typing._ufunc import _UFunc_Nin1_Nout1
 
-#: Retrieves an ndarray of nominal values from an ndarray of uncertain values.
 nominal: _UFunc_Nin1_Nout1[Literal["nominal"], Literal[1], None]
-#: Retrieves an ndarray of uncertainties from an ndarray of uncertain values.
 uncertainty: _UFunc_Nin1_Nout1[Literal["uncertainty"], Literal[1], None]
 
 class _UncertainOp(Protocol):
