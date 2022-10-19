@@ -110,6 +110,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set pretend version
+        if: ${{ !startsWith(github.ref, 'refs/tags') }}
+        run: echo "SETUPTOOLS_SCM_PRETEND_VERSION=$(git describe --tags | cut -d - -f 1,2 --output-delimiter .dev)" >> $GITHUB_ENV
+
       - name: Setup python
         uses: actions/setup-python@v4
         with:
@@ -149,6 +153,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set pretend version
+        if: ${{ !startsWith(github.ref, 'refs/tags') }}
+        run: echo "CIBW_ENVIRONMENT=SETUPTOOLS_SCM_PRETEND_VERSION=$(git describe --tags | cut -d - -f 1,2 --output-delimiter .dev)" >> $GITHUB_ENV
+
       - name: Setup python
         uses: actions/setup-python@v4
         with:
@@ -172,7 +180,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: dist
+          name: artifact
           path: dist
 
       - name: Publish to TestPyPI
