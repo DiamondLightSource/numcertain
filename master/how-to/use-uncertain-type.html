@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How to use the Uncertain type &mdash; numcertain 0.2.1.dev92+gdba8569 documentation</title>
+  <title>How to use the Uncertain type &mdash; numcertain 0.2.1.dev96+g0d924d8 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -101,15 +101,15 @@
              
   <section id="how-to-use-the-uncertain-type">
 <h1>How to use the Uncertain type<a class="headerlink" href="#how-to-use-the-uncertain-type" title="Permalink to this heading"></a></h1>
-<p>The <a class="reference internal" href="../reference/api.html#module-numcertain.uncertain" title="numcertain.uncertain"><code class="xref any py py-mod docutils literal notranslate"><span class="pre">uncertain</span></code></a> type is implemented as a CPython extension type, as such it may be used
+<p>The <a class="reference internal" href="../reference/api.html#numcertain.uncertain" title="numcertain.uncertain"><code class="xref any py py-class docutils literal notranslate"><span class="pre">uncertain</span></code></a> type is implemented as a CPython extension type, as such it may be used
 like any other native python type. The following import is required to follow the
 examples presented in this section:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numcertain.uncertain</span> <span class="kn">import</span> <span class="n">uncertain</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numcertain</span> <span class="kn">import</span> <span class="n">uncertain</span>
 </pre></div>
 </div>
 <section id="creating-an-uncertain-value">
 <span id="use-uncertain-type-creating"></span><h2>Creating an uncertain value<a class="headerlink" href="#creating-an-uncertain-value" title="Permalink to this heading"></a></h2>
-<p>An uncertain value may be created with use of the <a class="reference internal" href="../reference/api.html#module-numcertain.uncertain" title="numcertain.uncertain"><code class="xref any py py-mod docutils literal notranslate"><span class="pre">uncertain</span></code></a> object imported via
+<p>An uncertain value may be created with use of the <a class="reference internal" href="../reference/api.html#numcertain.uncertain" title="numcertain.uncertain"><code class="xref any py py-class docutils literal notranslate"><span class="pre">uncertain</span></code></a> object imported via
 <a class="reference internal" href="../reference/api.html#module-numcertain" title="numcertain"><code class="xref any py py-mod docutils literal notranslate"><span class="pre">numcertain</span></code></a>. Several examples of uncertain value instantiation are shown below.</p>
 <p>Ideally, an uncertain value is created by passing a expectation and standard deviation
 as floating point values. Thus an uncertain value with an expectation of <code class="code docutils literal notranslate"><span class="pre">42</span></code> and

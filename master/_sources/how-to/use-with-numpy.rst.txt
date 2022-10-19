@@ -8,7 +8,7 @@ following imports are required to follow the examples presented in this section:
 .. code:: python
 
     from numpy import array
-    from numcertain.uncertain impoprt uncertain
+    from numcertain impoprt uncertain
 
 
 Creating an array of uncertain values
