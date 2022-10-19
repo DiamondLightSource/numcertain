@@ -7,7 +7,7 @@ examples presented in this section:
 
 .. code:: python
 
-    from numcertain.uncertain import uncertain
+    from numcertain import uncertain
 
 
 .. _use-uncertain-type-creating:
