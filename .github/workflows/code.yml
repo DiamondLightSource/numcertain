@@ -155,7 +155,7 @@ jobs:
 
       - name: Set pretend version
         if: ${{ !startsWith(github.ref, 'refs/tags') }}
-        run: echo "CIBW_ENVIRONMENT=SETUPTOOLS_SCM_PRETEND_VERSION=$(git describe --tags | cut -d - -f 1,2 --output-delimiter .dev)" >> $GITHUB_ENV
+        run: echo "PRETEND_VERSION=$(git describe --tags | cut -d - -f 1,2 --output-delimiter .dev)" >> $GITHUB_ENV
 
       - name: Setup python
         uses: actions/setup-python@v4
@@ -168,6 +168,9 @@ jobs:
         env:
           CIBW_BUILD: "cp*"
           CIBW_ARCHS: ${{ matrix.arch.wheel }}
+          CIBW_ENVIRONMENT_LINUX: "SETUPTOOLS_SCM_PRETEND_VERSION=${{ env.PRETEND_VERSION }}"
+          CIBW_ENVIRONMENT_MACOS: "SETUPTOOLS_SCM_PRETEND_VERSION=${{ env.PRETEND_VERSION }}"
+          CIBW_ENVIRONMENT_WINDOWS: "SETUPTOOLS_SCM_PRETEND_VERSION=${{ env.PRETEND_VERSION }}"
 
       - name: Upload Wheel as artifact
         uses: actions/upload-artifact@v3
