@@ -95,8 +95,23 @@ jobs:
           name: ${{ matrix.python }}/${{ matrix.os }}/${{ matrix.deploy }}
           files: cov.xml
 
+  pretend_version:
+    runs-on: "ubuntu-latest"
+    outputs:
+      PRETEND_VERSION: ${{ steps.pretend_version.outputs.PRETEND_VERSION }}
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set pretend version
+        id: pretend_version
+        if: ${{ !startsWith(github.ref, 'refs/tags') }}
+        run: echo "PRETEND_VERSION=$(git describe --tags --abbrev=0).$(date +%s)" >> $GITHUB_OUTPUT
+
   sdist:
-    needs: [lint, test]
+    needs: [lint, test, pretend_version]
     strategy:
       fail-fast: false
       matrix:
@@ -122,7 +137,9 @@ jobs:
         run: |
           chmod -R g+w .
           umask 0002
-          pipx run --python $(which python${{ matrix.python }}) build --sdist         
+          pipx run --python $(which python${{ matrix.python }}) build --sdist
+        env:
+          SETUPTOOLS_SCM_PRETEND_VERSION: ${{ needs.pretend_version.outputs.PRETEND_VERSION }}
 
       - name: Upload Sdist as artifact
         uses: actions/upload-artifact@v3
@@ -130,7 +147,7 @@ jobs:
           path: dist/*.tar.gz
 
   wheel:
-    needs: [lint, test]
+    needs: [lint, test, pretend_version]
     strategy:
       fail-fast: false
       matrix:
@@ -160,14 +177,30 @@ jobs:
         env:
           CIBW_BUILD: "cp*"
           CIBW_ARCHS: ${{ matrix.arch.wheel }}
+          CIBW_ENVIRONMENT: SETUPTOOLS_SCM_PRETEND_VERSION=${{ needs.pretend_version.outputs.PRETEND_VERSION }}
 
       - name: Upload Wheel as artifact
         uses: actions/upload-artifact@v3
         with:
           path: ./wheelhouse/*.whl
 
-  release:
+  test_pypi_publish:
     needs: [sdist, wheel]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: artifact
+          path: dist
+
+      - name: Publish to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.TEST_PYPI_TOKEN }}
+          repository_url: https://test.pypi.org/legacy/
+
+  release:
+    needs: [test_pypi_publish]
     runs-on: ubuntu-latest
     # upload to PyPI and make a release on every tag
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
