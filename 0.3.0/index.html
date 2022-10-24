@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>numcertain &mdash; numcertain 0.3.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/dls-favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="tutorials/installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
+            <a href="#" class="icon icon-home"> numcertain
+            <img src="_static/dls-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to/use-uncertain-type.html">How to use the Uncertain type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to/use-with-numpy.html">How to use the Uncertain dtype with numpy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="explanations/uncertainty-propagation.html">Uncertainty Propagation Explained</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explanations/comparison.html">Comparison of Uncertain Values Explained</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reference/api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/DiamondLightSource/numcertain/releases">Releases</a></li>
+<li class="toctree-l1"><a class="reference external" href="genindex.html#http://">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: rgb(7, 43, 93)" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">numcertain</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>numcertain</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="numcertain">
+<h1>numcertain<a class="headerlink" href="#numcertain" title="Permalink to this heading"></a></h1>
+<p><a class="reference external" href="https://github.com/DiamondLightSource/numcertain/actions?query=workflow%3A%22Code+CI%22"><img alt="Code CI" src="https://github.com/DiamondLightSource/numcertain/workflows/Code%20CI/badge.svg?branch=master" /></a> <a class="reference external" href="https://github.com/DiamondLightSource/numcertain/actions?query=workflow%3A%22Docs+CI%22"><img alt="Docs CI" src="https://github.com/DiamondLightSource/numcertain/workflows/Docs%20CI/badge.svg?branch=master" /></a> <a class="reference external" href="https://codecov.io/gh/DiamondLightSource/numcertain"><img alt="Test Coverage" src="https://codecov.io/gh/DiamondLightSource/numcertain/branch/master/graph/badge.svg" /></a> <a class="reference external" href="https://pypi.org/project/numcertain"><img alt="Latest PyPI version" src="https://img.shields.io/pypi/v/numcertain.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/Apache-2.0"><img alt="Apache License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a></p>
+<p>This package provides a python and numpy data type (<a class="reference internal" href="reference/api.html#numcertain.uncertain" title="numcertain.uncertain"><code class="xref any py py-class docutils literal notranslate"><span class="pre">uncertain</span></code></a>) which implements a
+floating point value with quantified uncertainity, allowing for forward uncertainity
+propagation of uncorrelated values.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>PyPI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">numcertain</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Source code</p></td>
+<td><p><a class="reference external" href="https://github.com/DiamondLightSource/numcertain">https://github.com/DiamondLightSource/numcertain</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Documentation</p></td>
+<td><p><a class="reference external" href="https://DiamondLightSource.github.io/numcertain">https://DiamondLightSource.github.io/numcertain</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Releases</p></td>
+<td><p><a class="reference external" href="https://github.com/DiamondLightSource/numcertain/releases">https://github.com/DiamondLightSource/numcertain/releases</a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="aritmatic-examples">
+<h2>Aritmatic Examples<a class="headerlink" href="#aritmatic-examples" title="Permalink to this heading"></a></h2>
+<p>A brief example of arithmatic with the provided uncertain data type is presented below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">42.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">uncertain</span><span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt; 78.0±13.0
+&gt;&gt; 6.0±13.0
+&gt;&gt; 1512.0±535.1784749034662
+&gt;&gt; 1.1666666666666667±0.41294635409218067
+</pre></div>
+</div>
+<p>A brief example of arithmatic with numpy arrays with the uncertain dtype is presented
+below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">),</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">)])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">12.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">24.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">17.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">31.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)]</span>
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">uncertain</span><span class="p">(</span><span class="o">-</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span> <span class="n">uncertain</span><span class="p">(</span><span class="o">-</span><span class="mf">17.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)]</span>
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">60.0</span><span class="p">,</span> <span class="mf">41.182520563948</span><span class="p">)</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">168.0</span><span class="p">,</span> <span class="mf">154.50566332662373</span><span class="p">)]</span>
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">0.4166666666666667</span><span class="p">,</span> <span class="mf">0.2859897261385278</span><span class="p">)</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">0.2916666666666667</span><span class="p">,</span> <span class="mf">0.268238998830944</span><span class="p">)]</span>
+</pre></div>
+</div>
+</section>
+<section id="alternative-methods">
+<h2>Alternative Methods<a class="headerlink" href="#alternative-methods" title="Permalink to this heading"></a></h2>
+<p>In order to accurately propagate uncertainties of related values the derivative of the
+computed expectation must be known with respect to expectations it is comprised of.
+Automatic differentiation (autodiff) provides a mechanism for computing the derivative
+of arbitrary functions with respect to their components by exploiting the fact that all
+codes, regardless of complexity, are reduced to a sequence of primative arithmetic
+operations during execution for which the derivatives are known, by applying the chain
+rule the overall derivative can be determined automatically.</p>
+<p>The python package <a class="reference external" href="https://uncertainties-python-package.readthedocs.io/en/latest/">Uncertainties</a> provides a python data type which performs autodiff
+to propagate the corresponding uncertainity, unforunately due to Implementation as a
+python object the library is non-performant when used for array math.</p>
+<p>Whilst <a class="reference external" href="http://theoryandpractice.org/intro-exp-phys-book/error-propagation/error_propagation_with_jax.html">Propagation of Uncertainty with autodiff</a>, describes the use of autodiff
+provided by the python package <a class="reference external" href="https://jax.readthedocs.io/en/latest/">JAX</a> in propagating uncertainities for array math.</p>
+</section>
+<section id="how-the-documentation-is-structured">
+<h2>How the documentation is structured<a class="headerlink" href="#how-the-documentation-is-structured" title="Permalink to this heading"></a></h2>
+<p>Documentation is split into four categories, also accessible from links in the
+side-bar.</p>
+<section class="columns" id="tutorials">
+<h3><a class="reference internal" href="tutorials.html"><span class="doc">Tutorials</span></a><a class="headerlink" href="#tutorials" title="Permalink to this heading"></a></h3>
+<p>Tutorials for installation, library and commandline usage. New users start here.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/installation.html#check-your-version-of-python">Check your version of python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/installation.html#create-a-virtual-environment">Create a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/installation.html#installing-the-library">Installing the library</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section class="columns" id="how-to">
+<h3><a class="reference internal" href="how-to.html"><span class="doc">How-to Guides</span></a><a class="headerlink" href="#how-to" title="Permalink to this heading"></a></h3>
+<p>Practical step-by-step guides for the more experienced user.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to/use-uncertain-type.html">How to use the Uncertain type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how-to/use-uncertain-type.html#creating-an-uncertain-value">Creating an uncertain value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/use-uncertain-type.html#converting-to-an-uncertain-value">Converting to an uncertain value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/use-uncertain-type.html#displaying-an-uncertain-value">Displaying an uncertain value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/use-uncertain-type.html#retrieving-expectance-or-standard-deviation">Retrieving expectance or standard deviation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/use-uncertain-type.html#arithmetic-with-uncertain-values">Arithmetic with uncertain values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how-to/use-with-numpy.html">How to use the Uncertain dtype with numpy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how-to/use-with-numpy.html#creating-an-array-of-uncertain-values">Creating an array of uncertain values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/use-with-numpy.html#converting-an-array-to-the-uncertain-dtype">Converting an array to the uncertain dtype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/use-with-numpy.html#arithmetic-with-uncertain-values">Arithmetic with uncertain values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to/use-with-numpy.html#retrieving-expectance-or-standard-deviation">Retrieving expectance or standard deviation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section class="columns" id="explanations">
+<h3><a class="reference internal" href="explanations.html"><span class="doc">Explanations</span></a><a class="headerlink" href="#explanations" title="Permalink to this heading"></a></h3>
+<p>Explanation of how the library works and why it works that way.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="explanations/uncertainty-propagation.html">Uncertainty Propagation Explained</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="explanations/uncertainty-propagation.html#in-numcertain">In Numcertain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="explanations/uncertainty-propagation.html#alternative-methods">Alternative Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="explanations/comparison.html">Comparison of Uncertain Values Explained</a></li>
+</ul>
+</div>
+</section>
+<section class="columns" id="reference">
+<h3><a class="reference internal" href="reference.html"><span class="doc">Reference</span></a><a class="headerlink" href="#reference" title="Permalink to this heading"></a></h3>
+<p>Practical step-by-step guides for the more experienced user.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reference/api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference/api.html#numcertain"><code class="docutils literal notranslate"><span class="pre">numcertain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/api.html#numcertain.uncertain"><code class="docutils literal notranslate"><span class="pre">uncertain</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#numcertain.uncertain.nominal"><code class="docutils literal notranslate"><span class="pre">uncertain.nominal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/api.html#numcertain.uncertain.uncertainty"><code class="docutils literal notranslate"><span class="pre">uncertain.uncertainty</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/api.html#numcertain.numcertain.__version__"><code class="docutils literal notranslate"><span class="pre">numcertain.__version__</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference/contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference/contributing.html#running-the-tests">Running the tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/contributing.html#code-styling">Code Styling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/contributing.html#release-process">Release Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/contributing.html#updating-the-tools">Updating the tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/DiamondLightSource/numcertain/releases">Releases</a></li>
+<li class="toctree-l1"><a class="reference external" href="genindex.html#http://">Index</a></li>
+</ul>
+</div>
+</section>
+<section class="endcolumns" id="about-the-documentation">
+<h3>About the documentation<a class="headerlink" href="#about-the-documentation" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="https://documentation.divio.com">Why is the documentation structured this way?</a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tutorials/installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div id="other-versions-div" class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions" style="visibility: hidden">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Other Versions</span>
+      0.3.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl id="other-versions-dl"/>
+    </div>
+  </div>
+  <script>
+    function addVersion(name) {
+      var dd = document.createElement("dd");
+      var a = document.createElement("a");
+      a.href = "../" + name;
+      a.innerText = name;
+      dd.appendChild(a);
+      document.getElementById('other-versions-dl').appendChild(dd);
+    }
+    // Get versions.txt and add a version for each line
+    fetch("../versions.txt").then(response => {
+      if (response.ok) {
+        document.getElementById('other-versions-div').style.visibility = "visible";
+        return response.text().then(text => text.split(/\r?\n/).forEach(addVersion))
+      }
+    });
+  </script>
+
+
+</body>
+</html>

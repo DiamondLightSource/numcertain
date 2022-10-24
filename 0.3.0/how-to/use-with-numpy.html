@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to use the Uncertain dtype with numpy &mdash; numcertain 0.3.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/dls-favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Uncertainty Propagation Explained" href="../explanations/uncertainty-propagation.html" />
+    <link rel="prev" title="How to use the Uncertain type" href="use-uncertain-type.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: rgb(7, 43, 93)" >
+            <a href="../index.html" class="icon icon-home"> numcertain
+            <img src="../_static/dls-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How-to Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="use-uncertain-type.html">How to use the Uncertain type</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to use the Uncertain dtype with numpy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-an-array-of-uncertain-values">Creating an array of uncertain values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#converting-an-array-to-the-uncertain-dtype">Converting an array to the uncertain dtype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#arithmetic-with-uncertain-values">Arithmetic with uncertain values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#retrieving-expectance-or-standard-deviation">Retrieving expectance or standard deviation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Explanations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/uncertainty-propagation.html">Uncertainty Propagation Explained</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../explanations/comparison.html">Comparison of Uncertain Values Explained</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/DiamondLightSource/numcertain/releases">Releases</a></li>
+<li class="toctree-l1"><a class="reference external" href="genindex.html#http://">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: rgb(7, 43, 93)" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">numcertain</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>How to use the Uncertain dtype with numpy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/how-to/use-with-numpy.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-use-the-uncertain-dtype-with-numpy">
+<h1>How to use the Uncertain dtype with numpy<a class="headerlink" href="#how-to-use-the-uncertain-dtype-with-numpy" title="Permalink to this heading"></a></h1>
+<p>The <a class="reference internal" href="../reference/api.html#numcertain.uncertain" title="numcertain.uncertain"><code class="xref any py py-class docutils literal notranslate"><span class="pre">uncertain</span></code></a> type is implemented as a CPython extension type and a Numpy user
+defined data type, as such it may be used like any other numpy array <code class="docutils literal notranslate"><span class="pre">dtype</span></code>. The
+following imports are required to follow the examples presented in this section:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+<span class="kn">from</span> <span class="nn">numcertain</span> <span class="kn">import</span> <span class="n">uncertain</span><span class="p">,</span> <span class="n">nominal</span><span class="p">,</span> <span class="n">uncertainties</span>
+</pre></div>
+</div>
+<section id="creating-an-array-of-uncertain-values">
+<h2>Creating an array of uncertain values<a class="headerlink" href="#creating-an-array-of-uncertain-values" title="Permalink to this heading"></a></h2>
+<p>An array of uncertain values may be created with use of the Numpy <a class="reference external" href="https://docs.python.org/3/library/array.html#module-array" title="(in Python v3.10)"><code class="xref any docutils literal notranslate"><span class="pre">array</span></code></a> function
+and the Numcertain <code class="docutils literal notranslate"><span class="pre">uncertain</span></code> object. This is performed by passing a list of
+<code class="docutils literal notranslate"><span class="pre">uncertain</span></code> objects, created as as described in  to the numpy <code class="docutils literal notranslate"><span class="pre">array</span></code> function, as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">42.0</span><span class="p">,</span> <span class="mf">12.7</span><span class="p">),</span> <span class="n">uncertain</span><span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">uncertain</span><span class="p">(</span><span class="mi">87</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">42.0</span><span class="p">,</span> <span class="mf">12.7</span><span class="p">)</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">36.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">87.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="use-uncertain-type.html#use-uncertain-type-creating"><span class="std std-ref">How to use the Uncertain Type</span></a> for details
+of how an <code class="docutils literal notranslate"><span class="pre">uncertain</span></code> value is created.</p>
+</div>
+</section>
+<section id="converting-an-array-to-the-uncertain-dtype">
+<h2>Converting an array to the uncertain dtype<a class="headerlink" href="#converting-an-array-to-the-uncertain-dtype" title="Permalink to this heading"></a></h2>
+<p>An array of integer or floating point values may be cast into the <code class="docutils literal notranslate"><span class="pre">uncertain</span></code> dtype
+with use of the <code class="docutils literal notranslate"><span class="pre">astype</span></code> method of the numpy array, with <code class="docutils literal notranslate"><span class="pre">uncertain</span></code> as the sole
+argument. The syntax for which is shown below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">uncertain</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="use-uncertain-type.html#use-uncertain-type-casting"><span class="std std-ref">How to use the Uncertain Type</span></a> for details
+of how casting to an <code class="docutils literal notranslate"><span class="pre">uncertain</span></code> value is performed.</p>
+</div>
+</section>
+<section id="arithmetic-with-uncertain-values">
+<h2>Arithmetic with uncertain values<a class="headerlink" href="#arithmetic-with-uncertain-values" title="Permalink to this heading"></a></h2>
+<p>It is likely you will wish to perform arethemtic operations on uncertain values, these
+may be performed as normal for numeric python types (i.e. with use of the <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>,
+<code class="docutils literal notranslate"><span class="pre">*</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">/</span></code> operators). An example of such is shown below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">),</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">)])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">12.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">24.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">17.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">31.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)]</span>
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">uncertain</span><span class="p">(</span><span class="o">-</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span> <span class="n">uncertain</span><span class="p">(</span><span class="o">-</span><span class="mf">17.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)]</span>
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">60.0</span><span class="p">,</span> <span class="mf">41.182520563948</span><span class="p">)</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">168.0</span><span class="p">,</span> <span class="mf">154.50566332662373</span><span class="p">)]</span>
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">0.4166666666666667</span><span class="p">,</span> <span class="mf">0.2859897261385278</span><span class="p">)</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">0.2916666666666667</span><span class="p">,</span> <span class="mf">0.268238998830944</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See: <a class="reference internal" href="../explanations/uncertainty-propagation.html#uncertainty-propagation-in-numcertain"><span class="std std-ref">Uncertainty Propagation Explained</span></a> for details of how the uncertainty
+propagation math is performed.</p>
+</div>
+</section>
+<section id="retrieving-expectance-or-standard-deviation">
+<h2>Retrieving expectance or standard deviation<a class="headerlink" href="#retrieving-expectance-or-standard-deviation" title="Permalink to this heading"></a></h2>
+<p>A pair of numpy Universal Functions (ufuncs) are supplied to allow retrieval of the
+nominal values and uncertainties of an array of uncertain values. The use of these is
+demonstrated below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">),</span> <span class="n">uncertain</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">)])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">nominal</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">uncertainties</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="use-uncertain-type.html" class="btn btn-neutral float-left" title="How to use the Uncertain type" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../explanations/uncertainty-propagation.html" class="btn btn-neutral float-right" title="Uncertainty Propagation Explained" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div id="other-versions-div" class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions" style="visibility: hidden">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Other Versions</span>
+      0.3.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl id="other-versions-dl"/>
+    </div>
+  </div>
+  <script>
+    function addVersion(name) {
+      var dd = document.createElement("dd");
+      var a = document.createElement("a");
+      a.href = "../../" + name;
+      a.innerText = name;
+      dd.appendChild(a);
+      document.getElementById('other-versions-dl').appendChild(dd);
+    }
+    // Get versions.txt and add a version for each line
+    fetch("../../versions.txt").then(response => {
+      if (response.ok) {
+        document.getElementById('other-versions-div').style.visibility = "visible";
+        return response.text().then(text => text.split(/\r?\n/).forEach(addVersion))
+      }
+    });
+  </script>
+
+
+</body>
+</html>
