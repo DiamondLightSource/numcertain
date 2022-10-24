@@ -71,14 +71,33 @@ The python package `Uncertainties`_ provides a python data type which performs a
 to propagate the corresponding uncertainity, unforunately due to Implementation as a
 python object the library is non-performant when used for array math.
 
+Similarly, the python package `soerp`_ extends this technique to perform second order
+error propagation, but suffers from the same issues.
+
+The python package `mcerp`_ approximates uncertainities with use of space sampled Monte
+Carlo methods, but suffers from the same issues.
+
+The python package `jacobi`_ propagates uncertainities with use of but is quadratic in
+space and is therefore inappropriate when used for array math.
+
 Whilst `Propagation of Uncertainty with autodiff`_, describes the use of autodiff
 provided by the python package `JAX`_ in propagating uncertainities for array math.
+This approach provides accurate estimates with good performance, however its use limits
+portability between array backends.
 
 .. _Uncertainties: https://uncertainties-python-package.readthedocs.io/en/latest/
+
+.. _mcerp: https://github.com/tisimst/mcerp
+
+.. _soerp: https://github.com/tisimst/soerp
+
+.. _jacobi: https://github.com/hdembinski/jacobi
 
 .. _Propagation of Uncertainty with autodiff: http://theoryandpractice.org/intro-exp-phys-book/error-propagation/error_propagation_with_jax.html
 
 .. _JAX: https://jax.readthedocs.io/en/latest/
+
+.. _Python Array API Standard: https://data-apis.org/array-api/latest/
 
 .. |code_ci| image:: https://github.com/DiamondLightSource/numcertain/workflows/Code%20CI/badge.svg?branch=master
     :target: https://github.com/DiamondLightSource/numcertain/actions?query=workflow%3A%22Code+CI%22
