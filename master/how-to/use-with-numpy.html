@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How to use the Uncertain dtype with numpy &mdash; numcertain 0.2.1.dev98+g25d0cf4 documentation</title>
+  <title>How to use the Uncertain dtype with numpy &mdash; numcertain 0.3.1.dev1+g9dd1384 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -109,7 +109,7 @@ following imports are required to follow the examples presented in this section:
 </div>
 <section id="creating-an-array-of-uncertain-values">
 <h2>Creating an array of uncertain values<a class="headerlink" href="#creating-an-array-of-uncertain-values" title="Permalink to this heading"></a></h2>
-<p>An array of uncertain values may be created with use of the Numpy <a class="reference external" href="https://docs.python.org/3/library/array.html#module-array" title="(in Python v3.10)"><code class="xref any docutils literal notranslate"><span class="pre">array</span></code></a> function
+<p>An array of uncertain values may be created with use of the Numpy <a class="reference external" href="https://docs.python.org/3/library/array.html#module-array" title="(in Python v3.11)"><code class="xref any docutils literal notranslate"><span class="pre">array</span></code></a> function
 and the Numcertain <code class="docutils literal notranslate"><span class="pre">uncertain</span></code> object. This is performed by passing a list of
 <code class="docutils literal notranslate"><span class="pre">uncertain</span></code> objects, created as as described in  to the numpy <code class="docutils literal notranslate"><span class="pre">array</span></code> function, as:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">uncertain</span><span class="p">(</span><span class="mf">42.0</span><span class="p">,</span> <span class="mf">12.7</span><span class="p">),</span> <span class="n">uncertain</span><span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">uncertain</span><span class="p">(</span><span class="mi">87</span><span class="p">)])</span>
