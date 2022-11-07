@@ -1,7 +1,8 @@
 from math import isclose
-from typing import cast
+from typing import Any, cast
 
-from numpy import array, float32, float64, int16, int32, int64
+import pytest
+from numpy import array, float32, float64, int16, int32, int64, ndarray
 
 from numcertain import nominal, uncertain, uncertainty
 
@@ -80,6 +81,56 @@ def test_division():
     result = a / b
     assert isclose(1.5, cast(uncertain, result[0]).nominal, rel_tol=1e-7)
     assert isclose(1.5, cast(uncertain, result[0]).uncertainty, rel_tol=1e-7)
+
+
+def test_maximum():
+    with pytest.raises(TypeError):
+        array([uncertain(1.6, 0.8), uncertain(1.2, 0.6)]).max()
+
+
+def test_minimum():
+    with pytest.raises(TypeError):
+        array([uncertain(1.6, 0.8), uncertain(1.2, 0.6)]).min()
+
+
+def test_sum():
+    a = array([uncertain(1.6, 0.8), uncertain(1.2, 0.6)])
+    result = cast(uncertain, a.sum())
+    assert isclose(2.8, result.nominal)
+    assert isclose(1.0, result.uncertainty)
+
+
+def test_prod():
+    a = array([uncertain(2.0, 1.6), uncertain(3.0, 1.8)])
+    result = cast(uncertain, a.prod())
+    assert isclose(6.0, result.nominal)
+    assert isclose(6.0, result.uncertainty)
+
+
+@pytest.mark.parametrize(
+    ("array", "expected"),
+    [
+        (array([uncertain(0.0, 0.0), uncertain(0.0, 0.0)]), False),
+        (array([uncertain(0.0, 0.0), uncertain(3.0, 1.8)]), True),
+        (array([uncertain(2.0, 1.6), uncertain(3.0, 1.8)]), True),
+    ],
+)
+def test_any(array: ndarray[Any, uncertain], expected: bool):
+    result = array.any().item()
+    assert result is expected
+
+
+@pytest.mark.parametrize(
+    ("array", "expected"),
+    [
+        (array([uncertain(0.0, 0.0), uncertain(0.0, 0.0)]), False),
+        (array([uncertain(0.0, 0.0), uncertain(3.0, 1.8)]), False),
+        (array([uncertain(2.0, 1.6), uncertain(3.0, 1.8)]), True),
+    ],
+)
+def test_all(array: ndarray[Any, uncertain], expected: bool):
+    result = array.all().item()
+    assert result is expected
 
 
 def test_cast_to_int16():
