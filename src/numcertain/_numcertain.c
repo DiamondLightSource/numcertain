@@ -1,10 +1,10 @@
-#include "numcertain.h"
+#include "_numcertain.h"
 
 static PyMethodDef module_methods[] = {{0}};
 
 static struct PyModuleDef moduledef = {
     PyModuleDef_HEAD_INIT, // m_base
-    "numcertain",          // m_name
+    "_numcertain",         // m_name
     NULL,                  // m_doc
     -1,                    // m_size
     module_methods,        // m_methods

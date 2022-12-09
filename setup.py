@@ -9,7 +9,7 @@ EXT_MODULES = [
     Extension(
         name="numcertain._numcertain",
         sources=[
-            "src/numcertain/numcertain.c",
+            "src/numcertain/_numcertain.c",
             "src/numcertain/numpy.c",
             "src/numcertain/pytype.c",
             "src/numcertain/ctype.c",
