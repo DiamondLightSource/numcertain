@@ -18,7 +18,7 @@ jobs:
         uses: ./.github/actions/install_requirements
         with:
           requirements_file: requirements-dev-3.x.txt
-          install_options: -e .[dev]
+          install_options: -e .[docs]
 
       - name: Check links
         run: tox -e docs build -- -b linkcheck
