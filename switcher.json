@@ -1,19 +1,7 @@
 [
   {
-    "version": "master",
-    "url": "https://DiamondLightSource.github.io/numcertain/master/"
-  },
-  {
     "version": "main",
     "url": "https://DiamondLightSource.github.io/numcertain/main/"
-  },
-  {
-    "version": "0.3.0",
-    "url": "https://DiamondLightSource.github.io/numcertain/0.3.0/"
-  },
-  {
-    "version": "0.2.0",
-    "url": "https://DiamondLightSource.github.io/numcertain/0.2.0/"
   },
   {
     "version": "0.1.0",
@@ -24,8 +12,12 @@
     "url": "https://DiamondLightSource.github.io/numcertain/0.2/"
   },
   {
-    "version": "garryod-update-skeleton",
-    "url": "https://DiamondLightSource.github.io/numcertain/garryod-update-skeleton/"
+    "version": "0.2.0",
+    "url": "https://DiamondLightSource.github.io/numcertain/0.2.0/"
+  },
+  {
+    "version": "0.3.0",
+    "url": "https://DiamondLightSource.github.io/numcertain/0.3.0/"
   },
   {
     "version": "v0.1.0",
