@@ -125,7 +125,7 @@ jobs:
           architecture: ${{ matrix.arch.python }}
 
       - name: Create Wheel
-        uses: pypa/cibuildwheel@v2.14.0
+        uses: pypa/cibuildwheel@v2.14.1
         env:
           CIBW_BUILD: "cp*"
           CIBW_ARCHS: ${{ matrix.arch.wheel }}
