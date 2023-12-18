@@ -146,7 +146,7 @@ jobs:
           fetch-depth: 0
 
       - name: Download sdist and wheel
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
 
       - name: Check for packaging errors
         run: pipx run twine check --strict dist/*
@@ -175,7 +175,7 @@ jobs:
         run: echo IMAGE_REPOSITORY=ghcr.io/$(tr '[:upper:]' '[:lower:]' <<< "${{ github.repository }}") >> $GITHUB_ENV
 
       - name: Download wheel and lockfiles
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: .devcontainer
 
@@ -222,7 +222,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
 
       - name: Fixup blank lockfiles
         # Github release artifacts can't be blank
