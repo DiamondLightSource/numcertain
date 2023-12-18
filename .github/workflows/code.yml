@@ -93,7 +93,7 @@ jobs:
           pipx run --python $(which python3.9) build --sdist
 
       - name: Upload Sdist as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist/*.tar.gz
@@ -131,7 +131,7 @@ jobs:
           CIBW_ARCHS: ${{ matrix.arch.wheel }}
 
       - name: Upload Wheel as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: ./wheelhouse/*.whl
